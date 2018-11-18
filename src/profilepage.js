@@ -18,5 +18,9 @@ class ProfilePage extends React.Component {
 export {ProfilePage};
 
 //commentbyVidyaR
+<<<<<<< HEAD
 //comment by Olivia
 //meep4
+=======
+//thisisaconflictfreezonebyVidyaR
+>>>>>>> Conflict is healthy by Vidya R
