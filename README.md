@@ -49,8 +49,8 @@
     Users:
       key:
       name:
-            firstName: String
-            lastName: String
+           firstName: String
+           lastName: String
       age: Integer
       gender: Integer (0=male,1=female,2=others)
       email: String
@@ -67,6 +67,3 @@
     Interests:
       key: String
       description: String
-
-
-
