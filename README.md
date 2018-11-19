@@ -39,7 +39,7 @@
 
 -force push (git push -f branchName)-> Please dont force push master :D it can/will delete the good, awesome, working code in remote. Iff you have done this, tell team-mates to upload a pristine version of master.
 
-## What can you do when u mess up :D
+## What can you do when u mess up
 -tell someone, ask for help. Git is hard
 -delete local repo and clone again.
 
@@ -78,13 +78,25 @@ Users:
 
   interests: array (keys to Interests)
 
+
 Location:
+
+
   key: String
+
+
   city: String
+
+
   state: String
 
+
 Interests:
+
+
   key: String
+
+
   description: String
 
 
