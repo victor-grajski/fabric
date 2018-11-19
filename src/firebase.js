@@ -1,7 +1,6 @@
-import firebase from 'firebase'
+import firebase from 'firebase';
 
 // Initialize Firebase
-// when adding firebase to your page, use `import firebase from './firebase.js';`
 var config = {
     apiKey: "AIzaSyCE_lxJvzm81YnAwWv0R3-5ShRU9nHOPYM",
     authDomain: "fabric-754fe.firebaseapp.com",
@@ -12,4 +11,4 @@ var config = {
 };
 
 firebase.initializeApp(config);
-export defaualt firebase;
+export default firebase;
