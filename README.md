@@ -46,58 +46,58 @@
 
 # Data Structures in Firebase
 
-Users:
+    Users:
 
 
-  key:
+    key:
 
 
-  name:
+    name:
 
 
-        firstName: String
+            firstName: String
 
 
-        lastName: String
+            lastName: String
 
 
-  age: Integer
+    age: Integer
 
 
-  gender: Integer (0=male,1=female,2=others)
+    gender: Integer (0=male,1=female,2=others)
 
 
-  email: String
+    email: String
 
 
-  password: String
+    password: String
 
 
-  location: String (foreign key to Location)
+    location: String (foreign key to Location)
 
 
-  interests: array (keys to Interests)
+    interests: array (keys to Interests)
 
 
-Location:
+    Location:
 
 
-  key: String
+    key: String
 
 
-  city: String
+    city: String
 
 
-  state: String
+    state: String
 
 
-Interests:
+    Interests:
 
 
-  key: String
+    key: String
 
 
-  description: String
+    description: String
 
 
 
