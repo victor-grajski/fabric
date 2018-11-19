@@ -1,8 +1,10 @@
-##Divison of labor
-Home page:           Victor
-Create profile page: Ashish
-Profile page:        Vidya
-Login page + welcome mat: Olivia
+# Divison of labor
+-Home page:           Victor
+-Create profile page: Ashish
+-Profile page:        Vidya
+-Login page + welcome mat: Olivia
+
+# Git
 
 ## Commandments of using Git
 -Always create local branch. Never commit/push to master
@@ -22,7 +24,7 @@ Login page + welcome mat: Olivia
 
 -Git rebase sequence: git checkout master -> git pull -> git checkout branchName -> git rebase master -> In case of merge conflicts, fix them, then git add . , git merge --continue. [If you want to abort rebasing, use git rebase --abort]
 
-##Freqently used git commands
+## Freqently used git commands
 -Pulling a repo/master: git pull
 -creating a branch: git checkout -b yourInitials_branchName
 -looking at branches/current branch: git branch (* = branch you are on )
@@ -32,29 +34,48 @@ Login page + welcome mat: Olivia
 -pushing branch after rebase: git push -f origin branchName (force push, be carefull)
 -deleting branch: git branch -D branchName
 
-##Nuclear buttons - think before using
+## Nuclear buttons - think before using
 -Merging a pull request-> Don't merge untested, unreveiewed code. Creates a headache for people working independently.
 
 -force push (git push -f branchName)-> Please dont force push master :D it can/will delete the good, awesome, working code in remote. Iff you have done this, tell team-mates to upload a pristine version of master.
 
-##What can you do when u mess up :D
+## What can you do when u mess up :D
 -tell someone, ask for help. Git is hard
 -delete local repo and clone again.
 
-## Best way
 
-## Data Structures in Firebase
+# Data Structures in Firebase
 
 Users:
+
+
   key:
+
+
   name:
+
+
         firstName: String
+
+
         lastName: String
+
+
   age: Integer
+
+
   gender: Integer (0=male,1=female,2=others)
+
+
   email: String
+
+
   password: String
+
+
   location: String (foreign key to Location)
+
+
   interests: array (keys to Interests)
 
 Location:
