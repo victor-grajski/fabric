@@ -57,6 +57,7 @@
       password: String
       location: String (foreign key to Location)
       interests: array (foreign keys to Interests)
+      photo: (no clue)
 
     Location:
       key: String
