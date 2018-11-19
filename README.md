@@ -47,12 +47,8 @@
 # Data Structures in Firebase
 
     Users:
-
-
-    key:
-
-
-    name:
+      key:
+      name:
 
 
             firstName: String
