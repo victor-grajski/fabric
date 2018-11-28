@@ -40,6 +40,7 @@ class FilterForm extends React.Component {
         return (
             <div>
                 <form onSubmit={this.onSubmit}>
+                    <p>
                     <label>
                         City:
                         <select>
@@ -48,16 +49,9 @@ class FilterForm extends React.Component {
                             <option value="san francisco">San Francisco</option>
                         </select>
                     </label>
+                    </p>
 
-                    <label>
-                        Interests:
-                        <select>
-                            <option value="select">Select</option>
-                            <option value="guitar">Guitar</option>
-                            <option value="bollywood">Bollywood Movies</option>
-                        </select>
-                    </label>
-
+                    <p>
                     <label>
                         Gender:
                         <select>
@@ -67,15 +61,49 @@ class FilterForm extends React.Component {
                             <option value="other">Other</option>
                         </select>
                     </label>
+                    </p>
 
+                    <p>
                     <label>
-                        Age:
-                        <input type="number" name="age" />
+                        Min Age:
+                        <input type="text" name="minAge" />
                     </label>
+                    </p>
+
+                    <p>
+                    <label>
+                        Max Age:
+                        <input type="text" name="maxAge" />
+                    </label>
+                    </p>
+
+                    <p>
+                    <label>
+                        Interests:
+                        <select multiple>
+                            <option value="select">Select</option>
+                            <option value="guitar">Guitar</option>
+                            <option value="bollywood">Bollywood Movies</option>
+                        </select>
+                    </label>
+                    </p>
+
+                    <div>
+                    <label>
+                        Interests:
+                        <p>
+                        <input type="checkbox" id="guitar" name="guitar" />
+                        <label>Guitar</label>
+                        </p>
+                        <p>
+                        <input type="checkbox" id="bollywood" name="bollywood" />
+                        <label>Bollywood Movies</label>
+                        </p>
+                    </label>
+                    </div>
 
                     <input type="submit" value="Submit" />
                 </form>
-
             </div>
         )
     }
@@ -85,17 +113,18 @@ class FilterForm extends React.Component {
 class UserItem extends React.Component {
     constructor(props) {
         super(props);
-        // Photo
-        // Name
-        // Age
-        // Gender
-        // Location
-        super(props);
     }
 
     render() {
         return (
-            <p>First Name: {this.props.firstName}</p>
+            <tr>
+                <td>{this.props.userID}</td>
+                <td>{this.props.firstName} {this.props.lastName}</td>
+                <td>{this.props.age}</td>
+                <td>{this.props.gender}</td>
+                <td>{this.props.location}</td>
+                <td>{this.props.interests}</td>
+            </tr>
         )
     }
 }
@@ -112,9 +141,13 @@ class Profiles extends React.Component {
             querySnapshot.forEach((doc) => {
                 // doc.data() is never undefined for query doc snapshots
                 usersList.push({
+                  userID: doc.id,
                   firstName: doc.data().firstName,
                   lastName: doc.data().lastName,
-                  age: doc.data().age
+                  age: doc.data().age,
+                  gender: doc.data().gender,
+                  location: doc.data().location,
+                  interests: doc.data().interests
                 });
             });
 
@@ -129,10 +162,34 @@ class Profiles extends React.Component {
 
     render() {
         const userItems = this.state.users.map((user) =>
-    <UserItem key={user.firstName} firstName={user.firstName} />
+    <UserItem
+        key={user.userID}
+        userID={user.userID}
+        firstName={user.firstName}
+        lastName={user.lastName}
+        age={user.age}
+        gender={user.gender}
+        location={user.location}
+        interests={user.interests}
+    />
     );
         return(
-            <div>{userItems}</div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Name</td>
+                        <td>Age</td>
+                        <td>Gender</td>
+                        <td>Location</td>
+                        <td>Interests</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {userItems}
+                </tbody>
+            </table>
         );
     }
 }
