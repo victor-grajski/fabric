@@ -26,89 +26,6 @@ class LocationFilter extends React.Component {
 }
 */
 
-class FilterForm extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    handleSubmit(event) {
-        console.log("meep");
-        event.preventDefault();
-    }
-
-    render() {
-        return (
-            <div>
-                <form onSubmit={this.onSubmit}>
-                    <p>
-                    <label>
-                        City:
-                        <select>
-                            <option value="select">Select</option>
-                            <option value="berkeley">Berkeley</option>
-                            <option value="san francisco">San Francisco</option>
-                        </select>
-                    </label>
-                    </p>
-
-                    <p>
-                    <label>
-                        Gender:
-                        <select>
-                            <option value="select">Select</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </label>
-                    </p>
-
-                    <p>
-                    <label>
-                        Min Age:
-                        <input type="text" name="minAge" />
-                    </label>
-                    </p>
-
-                    <p>
-                    <label>
-                        Max Age:
-                        <input type="text" name="maxAge" />
-                    </label>
-                    </p>
-
-                    <p>
-                    <label>
-                        Interests:
-                        <select multiple>
-                            <option value="select">Select</option>
-                            <option value="guitar">Guitar</option>
-                            <option value="bollywood">Bollywood Movies</option>
-                        </select>
-                    </label>
-                    </p>
-
-                    <div>
-                    <label>
-                        Interests:
-                        <p>
-                        <input type="checkbox" id="guitar" name="guitar" />
-                        <label>Guitar</label>
-                        </p>
-                        <p>
-                        <input type="checkbox" id="bollywood" name="bollywood" />
-                        <label>Bollywood Movies</label>
-                        </p>
-                    </label>
-                    </div>
-
-                    <input type="submit" value="Submit" />
-                </form>
-            </div>
-        )
-    }
-
-}
 
 class UserItem extends React.Component {
     constructor(props) {
@@ -129,50 +46,145 @@ class UserItem extends React.Component {
     }
 }
 
-class Profiles extends React.Component {
+
+class FilterForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {users: []}
+        this.state = {
+            city: 0,
+            gender: 0,
+            minAge: 0,
+            maxAge: 0,
+            interest: 0,
+            users: [],
+            isSubmitted: false
+        }
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
 
-    componentDidMount() {
+    handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  }
+
+    handleSubmit(event) {
+        console.log(this.state);
         let usersList = [];
-        db.collection("users").get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                // doc.data() is never undefined for query doc snapshots
+        db.collection("users")
+        .where("location", "==", parseInt(this.state.city))
+        .where("gender", "==", parseInt(this.state.gender))
+        .where("age", ">=", parseInt(this.state.minAge))
+        .where("age", "<=", parseInt(this.state.maxAge))
+        .where("interests", "array-contains", parseInt(this.state.interest))
+        .onSnapshot((snapshot) => {
+            snapshot.forEach((record) => {
                 usersList.push({
-                  userID: doc.id,
-                  firstName: doc.data().firstName,
-                  lastName: doc.data().lastName,
-                  age: doc.data().age,
-                  gender: doc.data().gender,
-                  location: doc.data().location,
-                  interests: doc.data().interests
+                  userID: record.id,
+                  firstName: record.data().firstName,
+                  lastName: record.data().lastName,
+                  age: record.data().age,
+                  gender: record.data().gender,
+                  location: record.data().location,
+                  interests: record.data().interests
                 });
             });
 
             this.setState({
                 users: usersList
             })
-        })
-        .catch((error) => {
-            console.log("Error getting documents: ", error);
         });
+        this.setState({isSubmitted: true});
+        event.preventDefault();
     }
 
     render() {
-        const userItems = this.state.users.map((user) =>
-    <UserItem
-        key={user.userID}
-        userID={user.userID}
-        firstName={user.firstName}
-        lastName={user.lastName}
-        age={user.age}
-        gender={user.gender}
-        location={user.location}
-        interests={user.interests}
-    />
-    );
+        return (
+            <div>
+                <form>
+                    <p>
+                    <label>
+                        City:
+                        <select name="city" value={this.state.city} onChange={this.handleInputChange}>
+                            <option value="0">Select</option>
+                            <option value="1">Berkeley</option>
+                            <option value="2">San Francisco</option>
+                        </select>
+                    </label>
+                    </p>
+
+                    <p>
+                    <label>
+                        Gender:
+                        <select name="gender" value={this.state.gender} onChange={this.handleInputChange}>
+                            <option value="0">Select</option>
+                            <option value="1">Male</option>
+                            <option value="2">Female</option>
+                            <option value="3">Other</option>
+                        </select>
+                    </label>
+                    </p>
+
+                    <p>
+                    <label>
+                        Min Age:
+                        <input name="minAge" type="text" name="minAge" value={this.state.minAge} onChange={this.handleInputChange} />
+                    </label>
+                    </p>
+
+                    <p>
+                    <label>
+                        Max Age:
+                        <input name="maxAge" type="text" name="maxAge" value={this.state.maxAge} onChange={this.handleInputChange} />
+                    </label>
+                    </p>
+
+                    <p>
+                    <label>
+                        Interest:
+                        <select name="interest" value={this.state.interest} onChange={this.handleInputChange}>
+                            <option value="0">Select</option>
+                            <option value="1">Guitar</option>
+                            <option value="2">Bollywood Movies</option>
+                        </select>
+                    </label>
+                    </p>
+
+                    <input type="button" value="Submit" onClick={this.handleSubmit} />
+                </form>
+
+                {this.state.isSubmitted && <Profiles users={this.state.users} />}
+            </div>
+        )
+    }
+
+}
+
+
+class Profiles extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const userItems = this.props.users.map((user) =>
+            <UserItem
+                key={user.userID}
+                userID={user.userID}
+                firstName={user.firstName}
+                lastName={user.lastName}
+                age={user.age}
+                gender={user.gender}
+                location={user.location}
+                interests={user.interests}
+            />
+        );
+
         return(
             <table>
                 <thead>
@@ -194,16 +206,13 @@ class Profiles extends React.Component {
     }
 }
 
+
 class HomePage extends React.Component {
   render() {
     return (
-        <div>
-            <FilterForm />
-            <Profiles />
-        </div>
+        <FilterForm />
     );
   }
 }
-
 
 export {HomePage};
