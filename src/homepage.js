@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import {firebase, db} from './firebase.js';
 import './style.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import {ProfilePage} from "./profilepage.js"
 
 /*
 class SortDropdown extends React.Component {
@@ -35,6 +36,7 @@ class UserItem extends React.Component {
     render() {
         return (
             <tr>
+                <td><Link to={`/profile/${this.props.userID}`}>Profile</Link></td>
                 <td>{this.props.userID}</td>
                 <td>{this.props.firstName} {this.props.lastName}</td>
                 <td>{this.props.age}</td>
@@ -74,7 +76,6 @@ class FilterForm extends React.Component {
   }
 
     handleSubmit(event) {
-        console.log(this.state);
         let usersList = [];
         db.collection("users")
         .where("location", "==", parseInt(this.state.city))
