@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import firebase from './firebase.js';
 import './style.css';
-import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Redirect, NavLink } from 'react-router-dom';
 
 import {WelcomePage} from "./welcomepage.js"
 import {SignupPage} from "./signuppage.js"
@@ -11,6 +11,15 @@ import {HomePage} from "./homepage.js"
 import {ProfilePage} from "./profilepage.js"
 
 class Header extends React.Component {
+  constructor(props) {
+        super(props);
+        this.logout = this.logout.bind(this);
+    }
+  
+  logout() {
+        firebase.auth().signOut();
+    }
+
   render() {
     return (
       <header>
@@ -20,6 +29,7 @@ class Header extends React.Component {
           <NavLink className="nav" activeStyle={{ color: 'aquamarine' }} to="/signup">Sign Up</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
           <NavLink className="nav" activeStyle={{ color: 'aquamarine' }} to="/create-profile">Create Profile</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
           <NavLink className="nav" activeStyle={{ color: 'aquamarine' }} to="/profile">My Profile</NavLink> &nbsp;&nbsp;
+        <button onClick={this.logout}>Logout</button>
         </div>
       </header>
     );
@@ -42,29 +52,71 @@ class Footer extends React.Component {
   }
 }
 
-class PageContainer extends React.Component {
-
-  render() {
-    return(
-      <div>
-        <Route exact={true} path="/" component={WelcomePage} />
-        <Route path="/signup" component={SignupPage} />
-        <Route path="/create-profile" component={CreateProfilePage} />
-        <Route path="/home" component={HomePage} />
-        <Route path="/profile" component={ProfilePage} />
-      </div>
-    );
-  }
-}
-
 class App extends React.Component {
+  constructor() {
+    super();
+    this.state = ({
+      user: null,
+    });
+    this.authListener = this.authListener.bind(this);
+  }
+
+  componentDidMount() {
+    this.authListener();
+  }
+
+  authListener() {
+    firebase.auth().onAuthStateChanged((user) => {
+      console.log(user);
+      if (user) {
+        this.setState({ user });
+        localStorage.setItem('user', user.uid);
+      } else {
+        this.setState({ user: null });
+        localStorage.removeItem('user');
+      }
+    });
+  }
+
   render() {
    return (
      <div>
       <Router>
         <div>
           <Header />
-          <PageContainer/>
+            <Route exact path="/" render={() => (
+                this.state.user ? (
+                  <Redirect to="/home"/>
+                ) : (
+                  <WelcomePage/>
+                )
+              )}/>
+
+            <Route path="/create-profile" render={() => (
+                !this.state.user ? (
+                  <Redirect to="/"/>
+                ) : (
+                  <CreateProfilePage />
+                )
+              )}/>
+
+            <Route path="/signup" component={SignupPage} />
+
+            <Route path="/home" render={() => (
+                !this.state.user ? (
+                  <Redirect to="/"/>
+                ) : (
+                  <HomePage />
+                )
+              )}/>
+
+            <Route path="/profile" render={() => (
+                !this.state.user ? (
+                  <Redirect to="/"/>
+                ) : (
+                  <ProfilePage />
+                )
+              )}/>
           <Footer />
 
         </div>
