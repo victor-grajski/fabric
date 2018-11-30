@@ -7,11 +7,11 @@ class ProfilePage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstName:"",
-            lastName:"",
-            city: 0,
-            gender: 0,
-            interest: 0,
+            firstName:"Vidya",
+            lastName:"R",
+            city: "San Francisco",
+            gender: "Female",
+            interest: "Karaoke",
         }
     }
   render() {
@@ -19,7 +19,7 @@ class ProfilePage extends React.Component {
         <table>
         <tbody>
         <tr>
-          <td>Vidya</td>
+          <td>{this.state.firstName} {this.state.lastName}</td>
           <td>{this.state.age}</td>
           <td>{this.state.gender}</td>
           <td>{this.state.location}</td>
