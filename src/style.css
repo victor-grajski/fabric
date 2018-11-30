@@ -1,3 +1,58 @@
+.signupform {
+  padding-left: 100px;
+  padding-bottom: 20px;
+  background-color: #f3e4e0;
+}
+
+.nav {
+  font-family: Roboto;
+  src: url(https://fonts.google.com/specimen/Roboto);
+  color: #faf4f2;
+  text-decoration: none;
+}
+
+.footernav {
+  font-family: Roboto;
+  src: url(https://fonts.google.com/specimen/Roboto);
+  color: #104756;
+  text-decoration: none;
+}
+
+header {
+  position:absolute;
+  left:0;
+  top:0;
+  right:0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #104756;
+  text-align: center;
+}
+
+footer {
+  position:absolute;
+  left:0;
+  bottom:0;
+  right:0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #faf4f2;
+  text-align: center;
+}
+
 body {
-  background-color: white;
+  padding-top: 50px;
+  background-color: #cdeee8;
+}
+
+p {
+  font-family: Roboto;
+  src: url(https://fonts.google.com/specimen/Roboto);
+  color: #104756
+}
+
+h1 {
+  font-family: Libre;
+  src: url(https://fonts.google.com/specimen/Libre+Baskerville);
+  color: black;
 }

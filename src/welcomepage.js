@@ -7,7 +7,9 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 class WelcomePage extends React.Component {
   render() {
     return (
-      <div>Hello</div>
+      <div>
+        <h1>Welcome</h1>
+      </div>
     );
   }
 }
