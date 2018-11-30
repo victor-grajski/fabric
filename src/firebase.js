@@ -20,4 +20,5 @@ db.settings({
   timestampsInSnapshots: true
 });
 
-export {firebase, db};
+export default firebase;
+export {db}
