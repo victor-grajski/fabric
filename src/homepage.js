@@ -106,11 +106,13 @@ class FilterForm extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="signupform">
                 <form>
                     <p>
                     <label>
-                        City:
+                        <br/>
+                        <h1>Let's get started</h1><br/>
+                        City: &nbsp;
                         <select name="city" value={this.state.city} onChange={this.handleInputChange}>
                             <option value="0">Select</option>
                             <option value="1">Berkeley</option>
@@ -121,7 +123,7 @@ class FilterForm extends React.Component {
 
                     <p>
                     <label>
-                        Gender:
+                        Gender: &nbsp;
                         <select name="gender" value={this.state.gender} onChange={this.handleInputChange}>
                             <option value="0">Select</option>
                             <option value="1">Male</option>
@@ -133,21 +135,21 @@ class FilterForm extends React.Component {
 
                     <p>
                     <label>
-                        Min Age:
+                        Min Age: &nbsp;
                         <input name="minAge" type="text" name="minAge" value={this.state.minAge} onChange={this.handleInputChange} />
                     </label>
                     </p>
 
                     <p>
                     <label>
-                        Max Age:
+                        Max Age: &nbsp;
                         <input name="maxAge" type="text" name="maxAge" value={this.state.maxAge} onChange={this.handleInputChange} />
                     </label>
                     </p>
 
                     <p>
                     <label>
-                        Interest:
+                        Interest: &nbsp;
                         <select name="interest" value={this.state.interest} onChange={this.handleInputChange}>
                             <option value="0">Select</option>
                             <option value="1">Guitar</option>
