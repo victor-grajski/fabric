@@ -32,7 +32,8 @@ class UserItem extends React.Component {
     constructor(props) {
         super(props);
     }
-
+    
+    // TODO: pass ID to profile as prop
     render() {
         return (
             <tr>
@@ -66,24 +67,37 @@ class FilterForm extends React.Component {
     }
 
     handleInputChange(event) {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
 
-    this.setState({
-      [name]: value
-    });
-  }
+        this.setState({
+          [name]: value
+        });
+    }
 
     handleSubmit(event) {
         let usersList = [];
-        db.collection("users")
-        .where("location", "==", parseInt(this.state.city))
-        .where("gender", "==", parseInt(this.state.gender))
-        .where("age", ">=", parseInt(this.state.minAge))
-        .where("age", "<=", parseInt(this.state.maxAge))
-        .where("interests", "array-contains", parseInt(this.state.interest))
-        .onSnapshot((snapshot) => {
+        this.setState({users: []});
+
+        var query = db.collection('users');
+
+        if (parseInt(this.state.city) > 0) {
+            query = query.where('location', '==', parseInt(this.state.city));
+        }
+        if (parseInt(this.state.gender) > 0) {
+            query = query.where('gender', '==', parseInt(this.state.gender));
+        }
+        if (parseInt(this.state.minAge) > 0) {
+            query = query.where('age', '>=', parseInt(this.state.minAge));
+        }
+        if (parseInt(this.state.maxAge) > 0) {
+            query = query.where('age', '<=', parseInt(this.state.maxAge));
+        }
+        if (parseInt(this.state.interest) > 0) {
+            query = query.where('interests', 'array-contains', parseInt(this.state.interest));
+        }
+        query.get().then((snapshot) => {
             snapshot.forEach((record) => {
                 usersList.push({
                   userID: record.id,

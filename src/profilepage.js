@@ -1,22 +1,45 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import firebase from './firebase.js';
+import {firebase, db} from './firebase.js';
 import './style.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-//meep
-//meep2
-//meep3
 class ProfilePage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            firstName:"",
+            lastName:"",
+            city: 0,
+            gender: 0,
+            interest: 0,
+        }
+    }
   render() {
     return (
-      <div>Hello huhuhu its me</div>
+        <table>
+        <tbody>
+        <tr>
+          <td>Vidya</td>
+          <td>{this.state.age}</td>
+          <td>{this.state.gender}</td>
+          <td>{this.state.location}</td>
+          <td>{this.state.interests}</td>
+      </tr>
+      </tbody>
+      </table>
     );
   }
+  componentDidMount() {
+   const profileRef = db.collection("users").doc("CrueJvLyYOnLpph7j0go");
+  //const profileRef = firebase.database().ref('users')
+    profileRef.get().then((snapshot) => {
+      let profileval = snapshot.data();
+      let newHistory = [];
+      console.log(profileval);
+    }
+      // for (let profile in profileval) {
+      //newHistory.push(
+      )
+    }
 }
-
-
 export {ProfilePage};
-
-//commentbyVidyaR
-//comment by Olivia
-//meep4
