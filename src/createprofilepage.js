@@ -13,7 +13,8 @@ class CreateProfilePage extends React.Component {
       lastName: 'Giant',
       gender: 0,
       location: '',
-      age: 0
+      age: 0,
+      interests: {}
 
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -25,7 +26,10 @@ class CreateProfilePage extends React.Component {
 
   }
 
+  handleInputChangeCheckbox(event){
+    this.setState({[event.target.name]: event.target.value});
 
+  }
 
   write() {
     console.log('inside write')
@@ -103,6 +107,53 @@ class CreateProfilePage extends React.Component {
         />
 
         <br />
+
+        <label>Interests</label>
+
+            <label className="checkbox-inline"> Guitar</label>
+                <input
+                    id = 'interests'
+                    name= 'interests'
+                    onChange={this.handleInputChange}
+                    //value={option}
+                    //checked={ props.selectedOptions.indexOf(option) > -1 }
+                    type="checkbox"
+                />
+
+            <br />
+
+            <label className="checkbox-inline"> Cycling </label>
+                <input
+                    id = 'interests'
+                    name= 'interests'
+                    onChange={this.handleInputChange}
+                    //value={option}
+                    //checked={ props.selectedOptions.indexOf(option) > -1 }
+                    type="checkbox"
+                />
+
+            <br />
+
+            <label className="checkbox-inline"> Hiking </label>
+                <input
+                    id = 'interests'
+                    name= 'interests'
+                    onChange={this.handleInputChange}
+                    //value={option}
+                    //checked={ props.selectedOptions.indexOf(option) > -1 }
+                    type="checkbox"
+                />
+        <br />
+
+        <label className="checkbox-inline"> Swimming </label>
+                <input
+                    id = 'interests'
+                    name= 'interests'
+                    onChange={this.handleInputChange}
+                    //value={option}
+                    //checked={ props.selectedOptions.indexOf(option) > -1 }
+                    type="checkbox"
+                />
         <button onClick={this.write}>
         Submit
         </button>
