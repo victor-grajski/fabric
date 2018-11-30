@@ -29,17 +29,13 @@ class CreateProfilePage extends React.Component {
 
   write() {
     console.log('inside write')
-    //console.log(this.state.firstName)
-    // Add a new document with a generated id.
-    //let this = that;
     const userId='4';
-    const firstName=this.state.firstName;
-    // lastName = 'Sur';
-    // gender =0;
     db.collection("users").doc(userId).set({
-      firstName: firstName,
-      //lastName: this.state.lastName,
-      //gender: this.state.gender
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      gender: this.state.gender,
+      location: this.state.location,
+      age: this.state.age
     })
     .then(function() {
       console.log("Document successfully written!");
@@ -49,11 +45,8 @@ class CreateProfilePage extends React.Component {
     });
   }
 
-
-//('5','Ashish','Sur',0)
   render() {
     console.log('render')
-    //this.write('2','Ashish','Sur',0)
     return (
       <div>
         <label>First Name</label>
@@ -61,8 +54,6 @@ class CreateProfilePage extends React.Component {
           className="form-input"
           id='firstName'
           name='firstName'
-          //type={Text}
-          //value={this.state.firstName}
           onChange={this.handleInputChange}
           placeholder="First Name"
         />
@@ -74,7 +65,6 @@ class CreateProfilePage extends React.Component {
           id='lastName'
           name='lastName'
           //type={Text}
-          //value={this.state.lastName}
           onChange={this.handleInputChange}
           placeholder="Last Name"
         />
@@ -108,7 +98,6 @@ class CreateProfilePage extends React.Component {
           id='age'
           name='age'
           //type={Text}
-          //value={this.state.firstName}
           onChange={this.handleInputChange}
           placeholder="Age"
         />
