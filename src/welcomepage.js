@@ -39,6 +39,7 @@ class WelcomePage extends React.Component {
   }
   render() {
     return (
+<<<<<<< HEAD
         <div>
             <form>
                 <div class="form-group">
@@ -55,6 +56,12 @@ class WelcomePage extends React.Component {
             <button onClick={this.signup} style={{marginLeft: '25px'}} className="btn btn-success">Signup</button>
             </form>
         </div>
+=======
+      <div>
+        <h1>Welcome</h1>
+        <p>Meet people in your area who share similar interests</p>
+      </div>
+>>>>>>> message on welcome page
     );
   }
 }
