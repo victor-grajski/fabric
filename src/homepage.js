@@ -31,15 +31,18 @@ class LocationFilter extends React.Component {
 class UserItem extends React.Component {
     constructor(props) {
         super(props);
+        this.handleProfileClick = this.handleProfileClick.bind(this);
     }
-    
-    // TODO: pass ID to profile as prop
+
+    handleProfileClick() {
+        this.props.handleProfileClick(this.props.userID);
+    }
+
     render() {
         return (
             <tr>
-                <td><Link to={`/profile/${this.props.userID}`}>Profile</Link></td>
                 <td>{this.props.userID}</td>
-                <td>{this.props.firstName} {this.props.lastName}</td>
+                <td><Link to='/profile' onClick={this.handleProfileClick}>{this.props.firstName} {this.props.lastName}</Link></td>
                 <td>{this.props.age}</td>
                 <td>{this.props.gender}</td>
                 <td>{this.props.location}</td>
@@ -60,7 +63,8 @@ class FilterForm extends React.Component {
             maxAge: 0,
             interest: 0,
             users: [],
-            isSubmitted: false
+            isSubmitted: false,
+            profileID: null
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -175,11 +179,10 @@ class FilterForm extends React.Component {
                     <input type="button" value="Submit" onClick={this.handleSubmit} />
                 </form>
 
-                {this.state.isSubmitted && <Profiles users={this.state.users} />}
+                {this.state.isSubmitted && <Profiles users={this.state.users} handleProfileClick={this.props.handleProfileClick} />}
             </div>
         )
     }
-
 }
 
 
@@ -199,6 +202,7 @@ class Profiles extends React.Component {
                 gender={user.gender}
                 location={user.location}
                 interests={user.interests}
+                handleProfileClick={this.props.handleProfileClick}
             />
         );
 
@@ -225,9 +229,10 @@ class Profiles extends React.Component {
 
 
 class HomePage extends React.Component {
+
   render() {
     return (
-        <FilterForm />
+        <FilterForm handleProfileClick={this.props.handleProfileClick} />
     );
   }
 }

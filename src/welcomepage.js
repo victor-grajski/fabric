@@ -51,11 +51,7 @@ class WelcomePage extends React.Component {
                 <input value={this.state.password} onChange={this.handleChange} type="password" name="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
             </div>
 
-<<<<<<< HEAD
-            <button type="submit" onClick={this.login} class="btn btn-primary">Login</button>
-=======
             <button type="submit" onClick={this.login} className="btn btn-primary">Login</button>
->>>>>>> HTML class fixes
             <button onClick={this.signup} style={{marginLeft: '25px'}} className="btn btn-success">Signup</button>
             </form>
         </div>

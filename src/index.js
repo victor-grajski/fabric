@@ -15,7 +15,7 @@ class Header extends React.Component {
         super(props);
         this.logout = this.logout.bind(this);
     }
-  
+
   logout() {
         firebase.auth().signOut();
     }
@@ -28,7 +28,7 @@ class Header extends React.Component {
           <NavLink className="nav" activeStyle={{ color: 'aquamarine' }} to="/home">Home</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
           <NavLink className="nav" activeStyle={{ color: 'aquamarine' }} to="/signup">Sign Up</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
           <NavLink className="nav" activeStyle={{ color: 'aquamarine' }} to="/create-profile">Create Profile</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
-          <NavLink className="nav" activeStyle={{ color: 'aquamarine' }} to="/profile">My Profile</NavLink> &nbsp;&nbsp;
+          <NavLink className="nav" activeStyle={{ color: 'aquamarine' }} onClick={this.props.selfProfileClick} to="/profile">My Profile</NavLink> &nbsp;&nbsp;
         <button onClick={this.logout}>Logout</button>
         </div>
       </header>
@@ -45,7 +45,7 @@ class Footer extends React.Component {
           <NavLink className="footernav" activeStyle={{ color: 'darkturquoise' }} to="/home">Home</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
           <NavLink className="footernav" activeStyle={{ color: 'darkturquoise' }} to="/signup">Sign Up</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
           <NavLink className="footernav" activeStyle={{ color: 'darkturquoise' }} to="/create-profile">Create Profile</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
-          <NavLink className="footernav" activeStyle={{ color: 'darkturquoise' }} to="/profile">My Profile</NavLink> &nbsp;&nbsp;
+          <NavLink className="footernav" activeStyle={{ color: 'darkturquoise' }} onClick={this.props.selfProfileClick} to="/profile">My Profile</NavLink> &nbsp;&nbsp;
         </div>
       </footer>
     );
@@ -57,12 +57,24 @@ class App extends React.Component {
     super();
     this.state = ({
       user: null,
+      profileID: null,
     });
     this.authListener = this.authListener.bind(this);
+    this.selfProfileClick = this.selfProfileClick.bind(this);
+    this.handleProfileClick = this.handleProfileClick.bind(this);
   }
 
   componentDidMount() {
     this.authListener();
+  }
+
+  selfProfileClick() {
+      let uid = this.state.user.uid;
+      this.setState({profileID: uid});
+  }
+
+  handleProfileClick(profileID) {
+      this.setState({profileID: profileID});
   }
 
   authListener() {
@@ -83,7 +95,7 @@ class App extends React.Component {
      <div>
       <Router>
         <div>
-          <Header />
+          <Header selfProfileClick={this.selfProfileClick} />
             <Route exact path="/" render={() => (
                 this.state.user ? (
                   <Redirect to="/home"/>
@@ -106,7 +118,7 @@ class App extends React.Component {
                 !this.state.user ? (
                   <Redirect to="/"/>
                 ) : (
-                  <HomePage />
+                  <HomePage handleProfileClick={this.handleProfileClick} />
                 )
               )}/>
 
@@ -114,10 +126,10 @@ class App extends React.Component {
                 !this.state.user ? (
                   <Redirect to="/"/>
                 ) : (
-                  <ProfilePage />
+                  <ProfilePage userID={this.state.profileID} />
                 )
               )}/>
-          <Footer />
+          <Footer selfProfileClick={this.selfProfileClick} />
 
         </div>
       </Router>
