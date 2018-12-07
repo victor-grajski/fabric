@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import firebase from './firebase.js';
 import './style.css';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Router, Route, Link } from 'react-router-dom';
+import history from './history';
 
 class SignupPage extends React.Component {
     constructor(props) {
@@ -31,11 +32,14 @@ class SignupPage extends React.Component {
     signup(e){
       e.preventDefault();
       firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
-      }).then((u)=>{console.log(u)})
+      }).then((u)=>{
+          console.log(u);
+          history.push('/create-profile');
+      })
       .catch((error) => {
           console.log(error);
         })
-      this.context.history.push('/create-profile');
+
     }
     render() {
       return (
