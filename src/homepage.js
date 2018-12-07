@@ -125,11 +125,11 @@ class FilterForm extends React.Component {
     render() {
         return (
             <div className="signupform">
+                <h1>Let's get started</h1><br/>
                 <form>
                     <p>
                     <label>
                         <br/>
-                        <h1>Let's get started</h1><br/>
                         City: &nbsp;
                         <select name="city" value={this.state.city} onChange={this.handleInputChange}>
                             <option value="0">Select</option>
