@@ -21,7 +21,6 @@ class Header extends React.Component {
         firebase.auth().signOut();
     }
 
-    // <NavLink className="nav" activeStyle={{ color: 'aquamarine' }} to="/create-profile">Create Profile</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;s
   render() {
       if (this.props.loading) {
           return (
@@ -113,7 +112,11 @@ class App extends React.Component {
               )}/>
 
             <Route path="/profile" render={() => (
-                  <ProfilePage userID={this.state.profileID} />
+                <ProfilePage userID={this.state.user} />
+            )}/>
+
+            <Route path="/profile/:userID" render={({ match }) => (
+                  <ProfilePage userID={match.params.userID} />
               )}/>
         </div>
       </Router>
@@ -121,7 +124,6 @@ class App extends React.Component {
    );
  }
 }
-
 
 
 ReactDOM.render(
