@@ -6,9 +6,10 @@ Meep
 2. CSS
 3. Javascript
 4. React
-5. Firebase
-6. React Router
-7. History
-8. Webpack
-9. Style Loader
-10. Babel
+5. Firebase Auth
+6. Firebase Cloud Firestore
+7. React Router
+8. History
+9. Webpack
+10. Style Loader
+11. Babel
