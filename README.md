@@ -4,6 +4,24 @@
 - Profile page:        Vidya
 - Login page + welcome mat: Olivia
 
+
+# Firebase Data Structure
+```
+Users:
+  key: String
+  name:
+       firstName: String
+       lastName: String
+  age: Integer
+  gender: String
+  email: String
+  password: String
+  location: String
+  interests: String Array
+ 
+```
+
+
 # Git
 
 ## Commandments of Using Git
@@ -48,20 +66,3 @@
 ## What You Can Do When You Mess Up
 - Tell someone, ask for help. Git is hard
 - Delete local repo and clone again
-
-
-# Firebase Data Structure
-```
-Users:
-  key: String
-  name:
-       firstName: String
-       lastName: String
-  age: Integer
-  gender: String
-  email: String
-  password: String
-  location: String
-  interests: String Array
- 
-```
