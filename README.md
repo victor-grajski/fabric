@@ -50,7 +50,7 @@
 - Delete local repo and clone again
 
 
-# Data Structures in Firebase
+# Firebase Data Structure
 ```
 Users:
   key: String
