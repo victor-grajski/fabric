@@ -128,45 +128,46 @@ class CreateProfilePage extends React.Component {
         <br />
 
         <label>Interests</label>
+        <br />
 
-            <label className="checkbox-inline"> Guitar</label>
-                <input
-                    id = 'interests'
-                    name= 'guitar'
-                    onChange={this.handleInputChangeCheckbox}
-                    type="checkbox"
-                />
+        <label className="checkbox-inline"> Guitar</label>
+        <input
+            id = 'interests'
+            name= 'guitar'
+            onChange={this.handleInputChangeCheckbox}
+            type="checkbox"
+        />
 
-            <br />
+        <br />
 
-            <label className="checkbox-inline"> Cycling </label>
-                <input
-                    id = 'interests'
-                    name= 'cycling'
-                    onChange={this.handleInputChangeCheckbox}
-                    type="checkbox"
-                />
+        <label className="checkbox-inline"> Cycling </label>
+        <input
+            id = 'interests'
+            name= 'cycling'
+            onChange={this.handleInputChangeCheckbox}
+            type="checkbox"
+        />
 
-            <br />
+        <br />
 
-            <label className="checkbox-inline"> Hiking </label>
-                <input
-                    id = 'interests'
-                    name= 'hiking'
-                    onChange={this.handleInputChangeCheckbox}
-                    type="checkbox"
-                />
+        <label className="checkbox-inline"> Hiking </label>
+        <input
+            id = 'interests'
+            name= 'hiking'
+            onChange={this.handleInputChangeCheckbox}
+            type="checkbox"
+        />
         <br />
 
         <label className="checkbox-inline"> Swimming </label>
-                <input
-                    id = 'interests'
-                    name= 'swimming'
-                    onChange={this.handleInputChangeCheckbox}
-                    type="checkbox"
-                />
+        <input
+            id = 'interests'
+            name= 'swimming'
+            onChange={this.handleInputChangeCheckbox}
+            type="checkbox"
+        />
         <button onClick={() => {
-          console.log('test')
+          console.log('Calling write()')
           this.write()
           }}>
         Submit
