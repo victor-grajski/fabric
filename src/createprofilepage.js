@@ -4,37 +4,6 @@ import {firebase, db} from './firebase.js';
 import './style.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-// class Checkbox extends React.Component{
-//   constructor(props){
-//     this.isChecked= false
-//   }
-
-//   toggleCheckboxChange(){
-//     this.setState({isChecked: !isChecked})
-
-//   }
-//   render() {
-//     const { label } = this.props;
-//     const { isChecked } = this.state;
-
-//     return (
-//       <div className="checkbox">
-//         <label>
-//           <input
-//                             type="checkbox"
-//                             value={label}
-//                             checked={isChecked}
-//                             onChange={this.toggleCheckboxChange}
-//                         />
-
-//           {label}
-//         </label>
-//       </div>
-//     );
-//   }
-// }
-
-
 class CreateProfilePage extends React.Component {
   constructor(props) {
     super(props);
@@ -75,13 +44,9 @@ class CreateProfilePage extends React.Component {
     if (current_interests.indexOf(event.target.name) < 0 && event.target.checked == true){
       current_interests.push(event.target.name);
     }
-    console.log('new intersts',current_interests);
 
+    //console.log('new intersts',current_interests);
     this.setState({[event.target.name]: current_interests});
-
-
-    //console.log(current_interests);
-
   }
 
   write() {
@@ -198,8 +163,6 @@ class CreateProfilePage extends React.Component {
                     id = 'interests'
                     name= 'swimming'
                     onChange={this.handleInputChangeCheckbox}
-                    //value={option}
-                    //checked={ props.selectedOptions.indexOf(option) > -1 }
                     type="checkbox"
                 />
         <button onClick={() => {
