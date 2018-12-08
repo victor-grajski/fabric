@@ -1,5 +1,7 @@
 # Project Description
-Meep
+Fabric is a social network designed to help people make new friends in their area who share similar interests. Users can create a profile, search for people in their area, and view their profile.
+
+In the future, we plan to support pairing people based on local events and integrating chat.
 
 # Technologies Used
 1. HTML
