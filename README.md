@@ -1,8 +1,9 @@
 # Divison of Labor
-- Search page:           Victor
-- Create profile page: Ashish
-- Profile page:        Vidya
-- Login page + welcome mat: Olivia
+- Search:           [@victorgrajamski](https://github.com/victorgrajamski)
+- Create Profile: [@surashish](https://github.com/surashish)
+- Profile:        [@vidyaramamoorthy](https://github.com/vidyaramamoorthy)
+- Login + Welcome Mat: [@oliviaseow](https://github.com/oliviaseow)
+- Styling: [@mkaushik92](https://github.com/mkaushik92)
 
 
 # Firebase Data Structure
