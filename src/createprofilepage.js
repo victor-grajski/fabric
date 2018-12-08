@@ -19,22 +19,26 @@ class CreateProfilePage extends React.Component {
       interests: []
 
     };
-    console.log('user id in constructor',this.state.userId)
+
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleInputChangeCheckbox = this.handleInputChangeCheckbox.bind(this);
     this.write = this.write.bind(this);
   }
 
 
-
-
   handleInputChange(event){
+    if(event.target.name == 'age' && event.target.value != ''){
+      if(/^-{0,1}\d+$/.test(event.target.value) == false){
+        //valid integer (positive or negative)
+        alert('enter a number');
+        return;
+      }
+    }
+
     this.setState({[event.target.name]: event.target.value});
 
   }
-  componentDidMount() {
-      console.log(this.props.userId);
-  }
+
 
   handleInputChangeCheckbox(event){
     console.log('Checkbox');
@@ -45,23 +49,33 @@ class CreateProfilePage extends React.Component {
     if (event.target.checked == false){
       //if already present;
       if (current_interests.indexOf(event.target.name) >= 0 ){
-        //delete it from the array
+      //delete it from the array
         current_interests.pop(event.target.name);
       }
     }
+
 
     // Add to state if box is checked
     if (current_interests.indexOf(event.target.name) < 0 && event.target.checked == true){
       current_interests.push(event.target.name);
     }
 
-    //console.log('new intersts',current_interests);
+    console.log('new intersts',current_interests);
     this.setState({[event.target.name]: current_interests});
   }
 
+
   write() {
+
     console.log('inside write');
+    if( this.state.interests.length == 0){
+      //valid number of entries
+      alert('Please select atleast one interest');
+      return;
+    }
+
     const userId= this.state.userId;
+    //const userId = 'UAHNbfh0qsa1bvZNTwkpeXacUdO2';
     db.collection("users").doc(userId).set({
     //db.collection("users").add({
       firstName: this.state.firstName,
@@ -136,54 +150,56 @@ class CreateProfilePage extends React.Component {
           id='age'
           name='age'
           pattern="[0-9]*"
-          //type={Text}
+          type='text'
           onChange={this.handleInputChange}
           placeholder="Age"
         />
 
+        <br />
+        <br />
         <br />
 
         <label><strong>Interests</strong></label>
         <br />
         <br/>
 
-        <label className="checkbox-inline"> Guitar</label>
         <input
             id = 'interests'
             name= 'Guitar'
             onChange={this.handleInputChangeCheckbox}
             type="checkbox"
         />
+        <label className="checkbox-inline"> Guitar</label>
 
         <br />
 
-        <label className="checkbox-inline"> Cycling </label>
         <input
             id = 'interests'
             name= 'Cycling'
             onChange={this.handleInputChangeCheckbox}
             type="checkbox"
         />
-
+        <label className="checkbox-inline"> Cycling </label>
         <br />
 
-        <label className="checkbox-inline"> Hiking </label>
         <input
             id = 'interests'
             name= 'Hiking'
             onChange={this.handleInputChangeCheckbox}
             type="checkbox"
         />
+        <label className="checkbox-inline"> Hiking </label>
         <br />
 
-        <label className="checkbox-inline"> Swimming </label>
         <input
             id = 'interests'
             name= 'Swimming'
             onChange={this.handleInputChangeCheckbox}
             type="checkbox"
         />
+        <label className="checkbox-inline"> Swimming </label>
         <br />
+
         <button onClick={() => {
           console.log('Calling write()')
           this.write()
