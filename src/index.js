@@ -23,7 +23,12 @@ class Header extends React.Component {
 
     // <NavLink className="nav" activeStyle={{ color: 'aquamarine' }} to="/create-profile">Create Profile</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;s
   render() {
-      if (firebase.auth().currentUser) {
+      if (this.props.loading) {
+          return (
+              <header><div className="nav">Loading</div></header>
+          )
+      }
+      if (this.props.user) {
           return(
               <header>
                   <div>
@@ -35,7 +40,7 @@ class Header extends React.Component {
               </header>
         )
       }
-      if (!firebase.auth().currentUser) {
+      if (!this.props.user) {
           return (
               <header>
                 <div>
@@ -47,6 +52,7 @@ class Header extends React.Component {
             </header>
           )
       }
+
   }
 }
 
@@ -58,7 +64,6 @@ class App extends React.Component {
       user: null,
       profileID: null,
     });
-    this.authListener = this.authListener.bind(this);
     this.selfProfileClick = this.selfProfileClick.bind(this);
     this.handleProfileClick = this.handleProfileClick.bind(this);
   }
@@ -68,7 +73,16 @@ class App extends React.Component {
     }
 
   componentDidMount() {
-    this.authListener();
+      this.setState({loading: true});
+      firebase.auth().onAuthStateChanged((user) => {
+          if (user) {
+            this.setState({user: user.uid, loading: false});
+            localStorage.setItem('user', user.uid);
+          } else {
+            this.setState({ user: null, loading: false });
+            localStorage.removeItem('user');
+          }
+      });
   }
 
   selfProfileClick() {
@@ -80,25 +94,12 @@ class App extends React.Component {
       this.setState({profileID: profileID});
   }
 
-  authListener() {
-    firebase.auth().onAuthStateChanged((user) => {
-      console.log(user);
-      if (user) {
-        this.setState({ user });
-        localStorage.setItem('user', user.uid);
-      } else {
-        this.setState({ user: null });
-        localStorage.removeItem('user');
-      }
-    });
-  }
-
   render() {
    return (
      <div>
       <Router history={history}>
         <div>
-          <Header selfProfileClick={this.selfProfileClick} handleLogout={this.handleLogout} />
+          <Header selfProfileClick={this.selfProfileClick} handleLogout={this.handleLogout} user={this.state.user} loading={this.state.loading} />
             <Route exact path="/" render={() => (
                 <WelcomePage/>
               )}/>
@@ -111,7 +112,7 @@ class App extends React.Component {
 
             <Route path="/home" render={() => (
                 !this.state.user ? (
-                  <Redirect to="/signup"/>
+                  <Redirect to="/"/>
                 ) : (
                   <HomePage handleProfileClick={this.handleProfileClick} />
                 )

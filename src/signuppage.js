@@ -24,6 +24,9 @@ class SignupPage extends React.Component {
     login(e) {
       e.preventDefault();
       firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+      }).then((u)=>{
+          console.log(u);
+          history.push('/home');
       }).catch((error) => {
           console.log(error);
         });
