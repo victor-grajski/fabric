@@ -111,7 +111,7 @@ class App extends React.Component {
                   <HomePage handleProfileClick={this.handleProfileClick} />
               )}/>
 
-            <Route path="/profile" render={() => (
+            <Route exact path="/profile" render={() => (
                 <ProfilePage userID={this.state.user} />
             )}/>
 
