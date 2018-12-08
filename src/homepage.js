@@ -10,11 +10,6 @@ class InterestItems extends React.Component {
         super(props);
     }
 
-    componentDidMount() {
-        console.log(this.props.interests);
-    }
-
-
     render() {
         const interestItems = Object.keys(this.props.interests).map((interest) =>
     <li key={interest}>{this.props.interests[interest]}</li>
@@ -23,7 +18,6 @@ class InterestItems extends React.Component {
         <div>{interestItems}</div>
     );
     }
-
 }
 
 
@@ -32,8 +26,6 @@ class UserItem extends React.Component {
         super(props);
         this.handleProfileClick = this.handleProfileClick.bind(this);
     }
-
-
 
     handleProfileClick() {
         this.props.handleProfileClick(this.props.userID);

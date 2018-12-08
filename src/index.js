@@ -45,8 +45,6 @@ class Header extends React.Component {
               <header>
                 <div>
                   <NavLink exact={true} className="nav" activeStyle={{ color: 'aquamarine' }} to="/">Home</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
-                  <NavLink className="nav" activeStyle={{ color: 'aquamarine' }} to="/home">Search</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
-                  <NavLink className="nav" activeStyle={{ color: 'aquamarine' }} onClick={this.props.selfProfileClick} to="/profile">Profile</NavLink> &nbsp;&nbsp;
                   <NavLink className="nav" activeStyle={{ color: 'aquamarine' }} to="/signup">Log In/Sign Up</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
                 </div>
             </header>
@@ -111,19 +109,11 @@ class App extends React.Component {
             <Route path="/signup" component={SignupPage} />
 
             <Route path="/home" render={() => (
-                !this.state.user ? (
-                  <Redirect to="/"/>
-                ) : (
                   <HomePage handleProfileClick={this.handleProfileClick} />
-                )
               )}/>
 
             <Route path="/profile" render={() => (
-                !this.state.user ? (
-                  <Redirect to="/signup"/>
-                ) : (
                   <ProfilePage userID={this.state.profileID} />
-                )
               )}/>
         </div>
       </Router>
