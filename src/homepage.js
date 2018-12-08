@@ -34,7 +34,7 @@ class UserItem extends React.Component {
     render() {
         return (
             <tr>
-                <td><Link to='/profile' onClick={this.handleProfileClick}>{this.props.firstName} {this.props.lastName}</Link></td>
+                <td><Link to={`/profile/${this.props.userID}`} onClick={this.handleProfileClick}>{this.props.firstName} {this.props.lastName}</Link></td>
                 <td>{this.props.age}</td>
                 <td>{this.props.gender}</td>
                 <td>{this.props.location}</td>

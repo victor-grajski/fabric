@@ -112,7 +112,11 @@ class App extends React.Component {
               )}/>
 
             <Route path="/profile" render={() => (
-                  <ProfilePage userID={this.state.profileID} />
+                <ProfilePage userID={this.state.user} />
+            )}/>
+
+            <Route path="/profile/:userID" render={({ match }) => (
+                  <ProfilePage userID={match.params.userID} />
               )}/>
         </div>
       </Router>

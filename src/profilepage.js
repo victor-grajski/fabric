@@ -7,11 +7,11 @@ class ProfilePage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstName:"Vidya",
-            lastName:"R",
-            city: "San Francisco",
-            gender: "Female",
-            interest: "Karaoke",
+            firstName:"",
+            lastName:"",
+            city: "",
+            gender: "",
+            interest: "",
         }
     }
   render() {
@@ -30,16 +30,29 @@ class ProfilePage extends React.Component {
     );
   }
   componentDidMount() {
-   const profileRef = db.collection("users").doc("CrueJvLyYOnLpph7j0go");
-  //const profileRef = firebase.database().ref('users')
-    profileRef.get().then((snapshot) => {
-      let profileval = snapshot.data();
-      let newHistory = [];
-      console.log(profileval);
+   const profileRef = db.collection("users").doc(this.props.userID);
+
+   profileRef.get().then((doc)=> {
+    if (doc.exists) {
+        console.log("Profile", doc.data());
+        this.setState(
+        {
+              firstName:doc.data().firstName,
+              lastName: doc.data().lastName,
+              gender:doc.data().gender,
+              age:doc.data().age
+
+        }
+        );
+
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No profile exists!");
     }
-      // for (let profile in profileval) {
-      //newHistory.push(
-      )
-    }
+   });
+
+
+
+}
 }
 export {ProfilePage};
