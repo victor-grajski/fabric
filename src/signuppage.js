@@ -37,7 +37,7 @@ class SignupPage extends React.Component {
           history.push('/create-profile');
       })
       .catch((error) => {
-          console.log(error);
+          alert(error);
         })
 
     }
