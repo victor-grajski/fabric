@@ -16,7 +16,9 @@ class ProfilePage extends React.Component {
     }
   render() {
     return (
-        <div>
+        <div className = "profilepage">
+        <img src="https://media.licdn.com/dms/image/C4E03AQG9TGw_FNXciA/profile-displayphoto-shrink_800_800/0?e=1549497600&v=beta&t=J0HaIS4Fbp-yiErVnd_3am9KAjrqjgXLeG-2QgzgcI0" class="Profile-image" alt="Profile image"/>
+        <br/>
           <p>Name: {this.state.firstName} {this.state.lastName}</p>
           <p>Age: {this.state.age}</p>
           <p>Gender: {this.state.gender}</p>

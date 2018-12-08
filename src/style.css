@@ -1,7 +1,41 @@
 .signupform {
   padding-left: 100px;
   padding-bottom: 20px;
-  background-color: #f3e4e0;
+  position: relative;
+  font-family: Roboto;
+  src: url(https://fonts.google.com/specimen/Roboto);
+}
+
+.ageinput {
+  display: flex;
+  padding: .5rem .75rem;
+  width: 30px;
+  font-size: 1rem;
+  line-height: 1;
+  color: #55595c;
+  background-color: #fff;
+  background-image: none;
+  background-clip: padding-box;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px solid $color-black;
+  border-left: 0;
+  border-radius: $radius;
+  @include transition;
+
+  &:focus {
+   outline: 0;
+   border-bottom-color: $color-primary;
+  }
+ }
+
+.dropdown {
+  background-color: white;
+  width: auto;
+  height: 30px;
+  font-family: Roboto;
+  src: url(https://fonts.google.com/specimen/Roboto);
+  font-size: 14px;
 }
 
 .nav {
@@ -11,12 +45,97 @@
   text-decoration: none;
 }
 
-.footernav {
+.form-group {
+  /* padding-left: 100px; */
   font-family: Roboto;
+  font-weight: bold;
   src: url(https://fonts.google.com/specimen/Roboto);
   color: #104756;
   text-decoration: none;
+  font-size: 14px;
 }
+
+.btn-btn-primary {
+    /* padding-left: 100px; */
+    background-color: #104756;
+    border: none;
+    color: white;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.btn-btn-success {
+    /* padding-left: 100px; */
+    background-color: #104756;
+    border: none;
+    color: white;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+
+
+.profilepage {
+  padding-left: 100px;
+  font-family: Roboto;
+  src: url(https://fonts.google.com/specimen/Roboto);
+  text-decoration: none;
+  line-height: 2;
+}
+
+img {
+  border-radius: 8px;
+  width: 25%;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+
+
+input,
+textarea {
+ display: flex;
+ padding: .5rem .75rem;
+ width: 25%;
+ font-size: 1rem;
+ line-height: 1.25;
+ color: #55595c;
+ background-color: #fff;
+ background-image: none;
+ background-clip: padding-box;
+ border-top: 0;
+ border-right: 0;
+ border-bottom: 1px solid $color-black;
+ border-left: 0;
+ border-radius: $radius;
+ @include transition;
+
+ &:focus {
+  outline: 0;
+  border-bottom-color: $color-primary;
+ }
+}
+
+
 
 header {
   position:absolute;
