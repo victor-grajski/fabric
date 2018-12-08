@@ -100,8 +100,9 @@ class CreateProfilePage extends React.Component {
     console.log('render')
     console.log('current user=',auth.currentUser.uid)
     return (
-      <div id="signupform">
-        <label>First Name</label>
+      <div className="signupform">
+        <h1>Create Profile</h1>
+        <label><strong>First Name</strong></label>
         <input
           className="form-input"
           id='firstName'
@@ -111,7 +112,7 @@ class CreateProfilePage extends React.Component {
         />
 
         <br />
-        <label>Last Name</label>
+        <label><strong>Last Name</strong></label>
         <input
           className="form-input"
           id='lastName'
@@ -123,27 +124,27 @@ class CreateProfilePage extends React.Component {
 
         <br />
         <label>
-          Gender </label>
+          <strong>Gender </strong></label>
           <select
             name="gender"
-            onChange={this.handleInputChange}>
+            onChange={this.handleInputChange} className="dropdown">
             <option value='Male'>Male</option>
             <option value='Female'>Female</option>
           </select>
-
+        <br/>
         <br />
         <label>
-          Location </label>
+          <strong>Location </strong></label>
           <select
             name="location"
-            onChange={this.handleInputChange}>
+            onChange={this.handleInputChange} className="dropdown">
             <option value='San Francisco'>San Francisco</option>
             <option value='Berkeley'>Berkeley</option>
           </select>
-
+        <br/>
         <br/>
 
-        <label>Age</label>
+        <label><strong>Age</strong></label>
         <input
           className="form-input"
           id='age'
@@ -158,9 +159,9 @@ class CreateProfilePage extends React.Component {
         <br />
         <br />
 
-        <label>Select your interests:</label>
+        <label><strong>Interests</strong></label>
         <br />
-        <br />
+        <br/>
 
         <input
             id = 'interests'
@@ -202,7 +203,7 @@ class CreateProfilePage extends React.Component {
         <button onClick={() => {
           console.log('Calling write()')
           this.write()
-          }}>
+          }} className="btn-btn-success">
         Submit
         </button>
       </div>

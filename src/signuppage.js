@@ -45,7 +45,9 @@ class SignupPage extends React.Component {
     }
     render() {
       return (
-          <div>
+          <div className="signupform">
+            <h1> Fabric </h1>
+            <h2> Log in or sign up today.</h2>
               <form>
                   <div className="form-group">
                       <label htmlFor="exampleInputEmail1">Email address</label>
@@ -56,9 +58,9 @@ class SignupPage extends React.Component {
                   <label htmlFor="exampleInputPassword1">Password</label>
                   <input value={this.state.password} onChange={this.handleChange} type="password" name="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
               </div>
-
-              <button type="submit" onClick={this.login} className="btn btn-primary">Login</button>
-              <button onClick={this.signup} style={{marginLeft: '25px'}} className="btn btn-success">Signup</button>
+              <br/>
+              <button type="submit" onClick={this.login} className="btn-btn-primary">Login</button>
+              <button onClick={this.signup} style={{marginLeft: '25px'}} className="btn-btn-success">Signup</button>
               </form>
           </div>
       );
