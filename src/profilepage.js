@@ -16,17 +16,13 @@ class ProfilePage extends React.Component {
     }
   render() {
     return (
-        <table>
-        <tbody>
-        <tr>
-          <td>{this.state.firstName} {this.state.lastName}</td>
-          <td>{this.state.age}</td>
-          <td>{this.state.gender}</td>
-          <td>{this.state.location}</td>
-          <td>{this.state.interests}</td>
-      </tr>
-      </tbody>
-      </table>
+        <div>
+          <p>Name: {this.state.firstName} {this.state.lastName}</p>
+          <p>Age: {this.state.age}</p>
+          <p>Gender: {this.state.gender}</p>
+          <p>Location: {this.state.location}</p>
+          <p>Interests: {this.state.interests}</p>
+      </div>
     );
   }
   componentDidMount() {

@@ -8,7 +8,11 @@ class WelcomePage extends React.Component {
   render() {
     return (
         <div>
-            Meep
+            <h1>Welcome to Fabric</h1>
+            <h3>A social network that actually connects people.</h3>
+            <p>Find a bandmate.</p>
+            <p>Find a running buddy.</p>
+            <p>Find a ________ buddy.</p>
         </div>
     );
   }
