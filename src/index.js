@@ -102,7 +102,7 @@ class App extends React.Component {
               )}/>
 
             <Route path="/create-profile" render={() => (
-                <CreateProfilePage />
+                <CreateProfilePage userId={this.state.user} />
               )}/>
 
             <Route path="/signup" component={SignupPage} />
