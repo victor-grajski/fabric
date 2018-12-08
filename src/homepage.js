@@ -162,7 +162,9 @@ class FilterForm extends React.Component {
                         <select name="interest" value={this.state.interest} onChange={this.handleInputChange}>
                             <option value="0">Select</option>
                             <option value="Guitar">Guitar</option>
-                            <option value="Bollywood Movies">Bollywood Movies</option>
+                            <option value="Cycling">Cycling</option>
+                            <option value="Hiking">Hiking</option>
+                            <option value="Swimming">Swimming</option>
                         </select>
                     </label>
                     </p>

@@ -9,9 +9,9 @@ class ProfilePage extends React.Component {
         this.state = {
             firstName:"",
             lastName:"",
-            city: "",
+            location: "",
             gender: "",
-            interest: "",
+            interests: "",
         }
     }
   render() {
@@ -36,7 +36,9 @@ class ProfilePage extends React.Component {
               firstName:doc.data().firstName,
               lastName: doc.data().lastName,
               gender:doc.data().gender,
-              age:doc.data().age
+              age:doc.data().age,
+              location:doc.data().location,
+              interests:doc.data().interests
 
         }
         );
