@@ -4,6 +4,37 @@ import {firebase, db} from './firebase.js';
 import './style.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
+// class Checkbox extends React.Component{
+//   constructor(props){
+//     this.isChecked= false
+//   }
+
+//   toggleCheckboxChange(){
+//     this.setState({isChecked: !isChecked})
+
+//   }
+//   render() {
+//     const { label } = this.props;
+//     const { isChecked } = this.state;
+
+//     return (
+//       <div className="checkbox">
+//         <label>
+//           <input
+//                             type="checkbox"
+//                             value={label}
+//                             checked={isChecked}
+//                             onChange={this.toggleCheckboxChange}
+//                         />
+
+//           {label}
+//         </label>
+//       </div>
+//     );
+//   }
+// }
+
+
 class CreateProfilePage extends React.Component {
   constructor(props) {
     super(props);
@@ -11,13 +42,14 @@ class CreateProfilePage extends React.Component {
       userId: 1,
       firstName: 'Dumbo',
       lastName: 'Giant',
-      gender: 0,
-      location: '',
+      gender: 'male',
+      location: 'San Francisco',
       age: 0,
-      interests: {}
+      interests: []
 
     };
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleInputChangeCheckbox = this.handleInputChangeCheckbox.bind(this);
     this.write = this.write.bind(this);
   }
 
@@ -27,19 +59,42 @@ class CreateProfilePage extends React.Component {
   }
 
   handleInputChangeCheckbox(event){
-    this.setState({[event.target.name]: event.target.value});
+    //console.log('Checkbox');
+    let current_interests = this.state.interests;
+
+    //Remove from state if box got unchecked
+    if (event.target.checked == false){
+      //if already present;
+      if (current_interests.indexOf(event.target.name) >= 0 ){
+        //delete it from the array
+        current_interests.pop(event.target.name);
+      }
+    }
+
+    // Add to state if box is checked
+    if (current_interests.indexOf(event.target.name) < 0 && event.target.checked == true){
+      current_interests.push(event.target.name);
+    }
+    console.log('new intersts',current_interests);
+
+    this.setState({[event.target.name]: current_interests});
+
+
+    //console.log(current_interests);
 
   }
 
   write() {
-    console.log('inside write')
-    const userId='4';
-    db.collection("users").doc(userId).set({
+    console.log('inside write');
+    //const userId='6';
+    //db.collection("users").doc(userId).set({
+    db.collection("users").add({
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       gender: this.state.gender,
       location: this.state.location,
-      age: this.state.age
+      age: this.state.age,
+      interests: this.state.interests
     })
     .then(function() {
       console.log("Document successfully written!");
@@ -78,10 +133,9 @@ class CreateProfilePage extends React.Component {
           Gender </label>
           <select
             name="gender"
-            //value={th}
             onChange={this.handleInputChange}>
-            <option value='0'>Male</option>
-            <option value='1'>Female</option>
+            <option value='Male'>Male</option>
+            <option value='Female'>Female</option>
           </select>
 
         <br />
@@ -90,8 +144,8 @@ class CreateProfilePage extends React.Component {
           <select
             name="location"
             onChange={this.handleInputChange}>
-            <option value='0'>San Francisco</option>
-            <option value='1'>Berkeley</option>
+            <option value='San Francisco'>San Francisco</option>
+            <option value='Berkeley'>Berkeley</option>
           </select>
 
         <br/>
@@ -113,10 +167,8 @@ class CreateProfilePage extends React.Component {
             <label className="checkbox-inline"> Guitar</label>
                 <input
                     id = 'interests'
-                    name= 'interests'
-                    onChange={this.handleInputChange}
-                    //value={option}
-                    //checked={ props.selectedOptions.indexOf(option) > -1 }
+                    name= 'guitar'
+                    onChange={this.handleInputChangeCheckbox}
                     type="checkbox"
                 />
 
@@ -125,10 +177,8 @@ class CreateProfilePage extends React.Component {
             <label className="checkbox-inline"> Cycling </label>
                 <input
                     id = 'interests'
-                    name= 'interests'
-                    onChange={this.handleInputChange}
-                    //value={option}
-                    //checked={ props.selectedOptions.indexOf(option) > -1 }
+                    name= 'cycling'
+                    onChange={this.handleInputChangeCheckbox}
                     type="checkbox"
                 />
 
@@ -137,10 +187,8 @@ class CreateProfilePage extends React.Component {
             <label className="checkbox-inline"> Hiking </label>
                 <input
                     id = 'interests'
-                    name= 'interests'
-                    onChange={this.handleInputChange}
-                    //value={option}
-                    //checked={ props.selectedOptions.indexOf(option) > -1 }
+                    name= 'hiking'
+                    onChange={this.handleInputChangeCheckbox}
                     type="checkbox"
                 />
         <br />
@@ -148,13 +196,16 @@ class CreateProfilePage extends React.Component {
         <label className="checkbox-inline"> Swimming </label>
                 <input
                     id = 'interests'
-                    name= 'interests'
-                    onChange={this.handleInputChange}
+                    name= 'swimming'
+                    onChange={this.handleInputChangeCheckbox}
                     //value={option}
                     //checked={ props.selectedOptions.indexOf(option) > -1 }
                     type="checkbox"
                 />
-        <button onClick={this.write}>
+        <button onClick={() => {
+          console.log('test')
+          this.write()
+          }}>
         Submit
         </button>
       </div>
