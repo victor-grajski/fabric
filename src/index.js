@@ -21,7 +21,6 @@ class Header extends React.Component {
         firebase.auth().signOut();
     }
 
-    // <NavLink className="nav" activeStyle={{ color: 'aquamarine' }} to="/create-profile">Create Profile</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;s
   render() {
       if (this.props.loading) {
           return (
@@ -121,7 +120,6 @@ class App extends React.Component {
    );
  }
 }
-
 
 
 ReactDOM.render(
