@@ -86,7 +86,7 @@ class CreateProfilePage extends React.Component {
     console.log('render')
     console.log('current user=',auth.currentUser.uid)
     return (
-      <div>
+      <div id="signupform">
         <label>First Name</label>
         <input
           className="form-input"
@@ -112,7 +112,8 @@ class CreateProfilePage extends React.Component {
           Gender </label>
           <select
             name="gender"
-            onChange={this.handleInputChange}>
+            onChange={this.handleInputChange}
+            className="dropdown">
             <option value='Male'>Male</option>
             <option value='Female'>Female</option>
           </select>
@@ -122,7 +123,8 @@ class CreateProfilePage extends React.Component {
           Location </label>
           <select
             name="location"
-            onChange={this.handleInputChange}>
+            onChange={this.handleInputChange}
+            className="dropdown">
             <option value='San Francisco'>San Francisco</option>
             <option value='Berkeley'>Berkeley</option>
           </select>
