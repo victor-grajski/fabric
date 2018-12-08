@@ -5,27 +5,26 @@ import './style.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import {ProfilePage} from "./profilepage.js"
 
-/*
-class SortDropdown extends React.Component {
+class InterestItems extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidMount() {
+        console.log(this.props.interests);
+    }
+
+
+    render() {
+        const interestItems = Object.keys(this.props.interests).map((interest) =>
+    <li key={interest}>{this.props.interests[interest]}</li>
+    );
+    return (
+        <div>{interestItems}</div>
+    );
+    }
 
 }
-
-class AgeFilter extends React.Component {
-
-}
-
-class GenderFilter extends React.Component {
-
-}
-
-class InterestsFilter extends React.Component {
-
-}
-
-class LocationFilter extends React.Component {
-
-}
-*/
 
 
 class UserItem extends React.Component {
@@ -34,6 +33,8 @@ class UserItem extends React.Component {
         this.handleProfileClick = this.handleProfileClick.bind(this);
     }
 
+
+
     handleProfileClick() {
         this.props.handleProfileClick(this.props.userID);
     }
@@ -41,12 +42,11 @@ class UserItem extends React.Component {
     render() {
         return (
             <tr>
-                <td>{this.props.userID}</td>
                 <td><Link to='/profile' onClick={this.handleProfileClick}>{this.props.firstName} {this.props.lastName}</Link></td>
                 <td>{this.props.age}</td>
                 <td>{this.props.gender}</td>
                 <td>{this.props.location}</td>
-                <td>{this.props.interests}</td>
+                <td><InterestItems interests={this.props.interests} /></td>
             </tr>
         )
     }
@@ -125,7 +125,7 @@ class FilterForm extends React.Component {
     render() {
         return (
             <div className="signupform">
-                <h1>Let's get started</h1><br/>
+                <h1>Find People in Your Area</h1><br/>
                 <form>
                     <p>
                     <label>
@@ -210,7 +210,6 @@ class Profiles extends React.Component {
             <table>
                 <thead>
                     <tr>
-                        <td>ID</td>
                         <td>Name</td>
                         <td>Age</td>
                         <td>Gender</td>
