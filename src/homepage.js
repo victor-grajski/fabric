@@ -123,7 +123,7 @@ class FilterForm extends React.Component {
                     <label>
                         <br/>
                         City: &nbsp;
-                        <select name="city" value={this.state.city} onChange={this.handleInputChange}>
+                        <select name="city" value={this.state.city} onChange={this.handleInputChange} className="dropdown">
                             <option value="0">Select</option>
                             <option value="Berkeley">Berkeley</option>
                             <option value="San Francisco">San Francisco</option>
@@ -134,7 +134,7 @@ class FilterForm extends React.Component {
                     <p>
                     <label>
                         Gender: &nbsp;
-                        <select name="gender" value={this.state.gender} onChange={this.handleInputChange}>
+                        <select name="gender" value={this.state.gender} onChange={this.handleInputChange} className="dropdown">
                             <option value="0">Select</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
@@ -145,21 +145,21 @@ class FilterForm extends React.Component {
                     <p>
                     <label>
                         Min Age: &nbsp;
-                        <input name="minAge" type="text" name="minAge" value={this.state.minAge} onChange={this.handleInputChange} />
+                        <input name="minAge" type="text" name="minAge" value={this.state.minAge} onChange={this.handleInputChange} class="ageinput"/>
                     </label>
                     </p>
 
                     <p>
                     <label>
                         Max Age: &nbsp;
-                        <input name="maxAge" type="text" name="maxAge" value={this.state.maxAge} onChange={this.handleInputChange} />
+                        <input name="maxAge" type="text" name="maxAge" value={this.state.maxAge} onChange={this.handleInputChange} class="ageinput"/>
                     </label>
                     </p>
 
                     <p>
                     <label>
                         Interest: &nbsp;
-                        <select name="interest" value={this.state.interest} onChange={this.handleInputChange}>
+                        <select name="interest" value={this.state.interest} onChange={this.handleInputChange} className="dropdown">
                             <option value="0">Select</option>
                             <option value="Guitar">Guitar</option>
                             <option value="Cycling">Cycling</option>
@@ -169,7 +169,7 @@ class FilterForm extends React.Component {
                     </label>
                     </p>
 
-                    <input type="button" value="Submit" onClick={this.handleSubmit} />
+                    <input type="button" value="Submit" className="btn-btn-success" onClick={this.handleSubmit} />
                 </form>
 
                 {this.state.isSubmitted && <Profiles users={this.state.users} handleProfileClick={this.props.handleProfileClick} />}

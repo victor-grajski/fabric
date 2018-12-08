@@ -11,19 +11,19 @@ class ProfilePage extends React.Component {
             lastName:"",
             location: "",
             gender: "",
-            interests: "",
+            interests: " ",
         }
     }
   render() {
     return (
         <div className = "profilepage">
-        <img src="https://media.licdn.com/dms/image/C4E03AQG9TGw_FNXciA/profile-displayphoto-shrink_800_800/0?e=1549497600&v=beta&t=J0HaIS4Fbp-yiErVnd_3am9KAjrqjgXLeG-2QgzgcI0" class="Profile-image" alt="Profile image"/>
+          <h1> My Profile </h1>
         <br/>
-          <p>Name: {this.state.firstName} {this.state.lastName}</p>
-          <p>Age: {this.state.age}</p>
-          <p>Gender: {this.state.gender}</p>
-          <p>Location: {this.state.location}</p>
-          <p>Interests: {this.state.interests}</p>
+          <p><strong>Name:</strong> {this.state.firstName} {this.state.lastName}</p>
+          <p><strong>Age:</strong> {this.state.age}</p>
+          <p><strong>Gender:</strong> {this.state.gender}</p>
+          <p><strong>Location:</strong> {this.state.location}</p>
+          <p><strong>Interests:</strong> {this.state.interests}</p>
       </div>
     );
   }
