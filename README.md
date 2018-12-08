@@ -1,5 +1,5 @@
 # Divison of labor
-- Home page:           Victor
+- Search page:           Victor
 - Create profile page: Ashish
 - Profile page:        Vidya
 - Login page + welcome mat: Olivia
