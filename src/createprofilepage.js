@@ -1,14 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {firebase, db} from './firebase.js';
+import {firebase, db, auth} from './firebase.js';
 import './style.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 class CreateProfilePage extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      userId: 1,
+      userId: auth.currentUser.uid,
       firstName: 'Dumbo',
       lastName: 'Giant',
       gender: 'male',
@@ -17,10 +18,14 @@ class CreateProfilePage extends React.Component {
       interests: []
 
     };
+    console.log('user id in constructor',this.state.userId)
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleInputChangeCheckbox = this.handleInputChangeCheckbox.bind(this);
     this.write = this.write.bind(this);
   }
+
+
+
 
   handleInputChange(event){
     this.setState({[event.target.name]: event.target.value});
@@ -28,7 +33,8 @@ class CreateProfilePage extends React.Component {
   }
 
   handleInputChangeCheckbox(event){
-    //console.log('Checkbox');
+    console.log('Checkbox');
+    console.log('user-id',this.state.userId)
     let current_interests = this.state.interests;
 
     //Remove from state if box got unchecked
@@ -51,9 +57,9 @@ class CreateProfilePage extends React.Component {
 
   write() {
     console.log('inside write');
-    //const userId='6';
-    //db.collection("users").doc(userId).set({
-    db.collection("users").add({
+    const userId= this.state.userId;
+    db.collection("users").doc(userId).set({
+    //db.collection("users").add({
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       gender: this.state.gender,
@@ -69,8 +75,10 @@ class CreateProfilePage extends React.Component {
     });
   }
 
+
   render() {
     console.log('render')
+    console.log('current user=',auth.currentUser.uid)
     return (
       <div>
         <label>First Name</label>
@@ -120,6 +128,7 @@ class CreateProfilePage extends React.Component {
           className="form-input"
           id='age'
           name='age'
+          pattern="[0-9]*"
           //type={Text}
           onChange={this.handleInputChange}
           placeholder="Age"
@@ -133,7 +142,7 @@ class CreateProfilePage extends React.Component {
         <label className="checkbox-inline"> Guitar</label>
         <input
             id = 'interests'
-            name= 'guitar'
+            name= 'Guitar'
             onChange={this.handleInputChangeCheckbox}
             type="checkbox"
         />
@@ -143,7 +152,7 @@ class CreateProfilePage extends React.Component {
         <label className="checkbox-inline"> Cycling </label>
         <input
             id = 'interests'
-            name= 'cycling'
+            name= 'Cycling'
             onChange={this.handleInputChangeCheckbox}
             type="checkbox"
         />
@@ -153,7 +162,7 @@ class CreateProfilePage extends React.Component {
         <label className="checkbox-inline"> Hiking </label>
         <input
             id = 'interests'
-            name= 'hiking'
+            name= 'Hiking'
             onChange={this.handleInputChangeCheckbox}
             type="checkbox"
         />
@@ -162,10 +171,11 @@ class CreateProfilePage extends React.Component {
         <label className="checkbox-inline"> Swimming </label>
         <input
             id = 'interests'
-            name= 'swimming'
+            name= 'Swimming'
             onChange={this.handleInputChangeCheckbox}
             type="checkbox"
         />
+        <br />
         <button onClick={() => {
           console.log('Calling write()')
           this.write()

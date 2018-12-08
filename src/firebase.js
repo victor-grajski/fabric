@@ -11,6 +11,7 @@ var config = {
 };
 
 firebase.initializeApp(config);
+const auth = firebase.auth();
 
 // Initialize Cloud Firestore through Firebase
 const db = firebase.firestore();
@@ -22,3 +23,4 @@ db.settings({
 
 export default firebase;
 export {db}
+export {auth}
