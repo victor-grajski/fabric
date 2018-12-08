@@ -78,20 +78,20 @@ class FilterForm extends React.Component {
 
         var query = db.collection('users');
 
-        if (parseInt(this.state.city) > 0) {
-            query = query.where('location', '==', parseInt(this.state.city));
+        if (this.state.city != 0) {
+            query = query.where('location', '==', this.state.city);
         }
-        if (parseInt(this.state.gender) > 0) {
-            query = query.where('gender', '==', parseInt(this.state.gender));
+        if (this.state.gender != 0) {
+            query = query.where('gender', '==', this.state.gender);
         }
-        if (parseInt(this.state.minAge) > 0) {
+        if (this.state.minAge != 0) {
             query = query.where('age', '>=', parseInt(this.state.minAge));
         }
-        if (parseInt(this.state.maxAge) > 0) {
+        if (this.state.maxAge != 0) {
             query = query.where('age', '<=', parseInt(this.state.maxAge));
         }
-        if (parseInt(this.state.interest) > 0) {
-            query = query.where('interests', 'array-contains', parseInt(this.state.interest));
+        if (this.state.interest.length > 0) {
+            query = query.where('interests', 'array-contains', this.state.interest);
         }
         query.get().then((snapshot) => {
             snapshot.forEach((record) => {
@@ -125,8 +125,8 @@ class FilterForm extends React.Component {
                         City: &nbsp;
                         <select name="city" value={this.state.city} onChange={this.handleInputChange}>
                             <option value="0">Select</option>
-                            <option value="1">Berkeley</option>
-                            <option value="2">San Francisco</option>
+                            <option value="Berkeley">Berkeley</option>
+                            <option value="San Francisco">San Francisco</option>
                         </select>
                     </label>
                     </p>
@@ -136,9 +136,8 @@ class FilterForm extends React.Component {
                         Gender: &nbsp;
                         <select name="gender" value={this.state.gender} onChange={this.handleInputChange}>
                             <option value="0">Select</option>
-                            <option value="1">Male</option>
-                            <option value="2">Female</option>
-                            <option value="3">Other</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
                         </select>
                     </label>
                     </p>
@@ -162,8 +161,8 @@ class FilterForm extends React.Component {
                         Interest: &nbsp;
                         <select name="interest" value={this.state.interest} onChange={this.handleInputChange}>
                             <option value="0">Select</option>
-                            <option value="1">Guitar</option>
-                            <option value="2">Bollywood Movies</option>
+                            <option value="Guitar">Guitar</option>
+                            <option value="Bollywood Movies">Bollywood Movies</option>
                         </select>
                     </label>
                     </p>
