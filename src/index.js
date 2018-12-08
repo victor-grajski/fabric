@@ -15,7 +15,7 @@ class Header extends React.Component {
         super(props);
         this.logout = this.logout.bind(this);
     }
-  
+
   logout() {
         firebase.auth().signOut();
     }
@@ -110,11 +110,11 @@ class App extends React.Component {
                 )
               )}/>
 
-            <Route path="/profile" render={() => (
+            <Route path="/profile/:userID" render={({ match }) => (
                 !this.state.user ? (
                   <Redirect to="/"/>
                 ) : (
-                  <ProfilePage />
+                  <ProfilePage userID={match.params.userID}/>
                 )
               )}/>
           <Footer />
