@@ -25,10 +25,9 @@ class SignupPage extends React.Component {
       e.preventDefault();
       firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
       }).then((u)=>{
-          console.log(u);
           history.push('/home');
       }).catch((error) => {
-          console.log(error);
+          alert(error);
         });
     }
 
@@ -36,7 +35,6 @@ class SignupPage extends React.Component {
       e.preventDefault();
       firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
       }).then((u)=>{
-          console.log(u);
           history.push('/create-profile');
       })
       .catch((error) => {
