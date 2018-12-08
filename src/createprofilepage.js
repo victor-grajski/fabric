@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import {firebase, db} from './firebase.js';
 import './style.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import history from './history';
 
 class CreateProfilePage extends React.Component {
   constructor(props) {
@@ -25,6 +26,9 @@ class CreateProfilePage extends React.Component {
   handleInputChange(event){
     this.setState({[event.target.name]: event.target.value});
 
+  }
+  componentDidMount() {
+      console.log(this.props.userId);
   }
 
   handleInputChangeCheckbox(event){
@@ -63,6 +67,8 @@ class CreateProfilePage extends React.Component {
     })
     .then(function() {
       console.log("Document successfully written!");
+      alert("Profile created! Now let's meet some folks.");
+      history.push('/home');
     })
     .catch(function(error) {
         console.error("Error writing document: ", error);
@@ -178,6 +184,3 @@ class CreateProfilePage extends React.Component {
   }
 }
 export {CreateProfilePage};
-
-
-

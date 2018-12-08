@@ -35,6 +35,7 @@ class SignupPage extends React.Component {
       e.preventDefault();
       firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
       }).then((u)=>{
+          alert("Account created! Now let's complete your profile.");
           history.push('/create-profile');
       })
       .catch((error) => {
