@@ -43,20 +43,22 @@ class SignupPage extends React.Component {
     }
     render() {
       return (
-          <div>
+          <div className="signupform">
+            <h1>Welcome to Fabric</h1>
+            <p>Fabric is a social platform that helps you connect with people over shared interests.</p><br/><br/>
               <form>
                   <div className="form-group">
                       <label htmlFor="exampleInputEmail1">Email address</label>
                       <input value={this.state.email} onChange={this.handleChange} type="email" name="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" />
                   </div>
-
+              <br/>
               <div className="form-group">
                   <label htmlFor="exampleInputPassword1">Password</label>
                   <input value={this.state.password} onChange={this.handleChange} type="password" name="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
               </div>
-
-              <button type="submit" onClick={this.login} className="btn btn-primary">Login</button>
-              <button onClick={this.signup} style={{marginLeft: '25px'}} className="btn btn-success">Signup</button>
+              <br/><br/>
+              <button type="submit" onClick={this.login} className="btn-btn-primary">Login</button>
+              <button onClick={this.signup} style={{marginLeft: '25px'}} className="btn-btn-success">Signup</button>
               </form>
           </div>
       );

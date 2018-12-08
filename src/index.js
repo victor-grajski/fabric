@@ -27,7 +27,7 @@ class Header extends React.Component {
           return(
               <header>
                   <div>
-                      <NavLink exact={true} className="nav" to="/">Home</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
+                      {/* <NavLink exact={true} className="nav" to="/"></NavLink> &nbsp;&nbsp;&nbsp;&nbsp; */}
                       <NavLink className="nav" to="/home">Search</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
                       <NavLink className="nav" onClick={this.props.selfProfileClick} to="/profile">Profile</NavLink> &nbsp;&nbsp;
                       <NavLink className="nav" onClick={this.props.handleLogout} to="/">Log Out</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -39,10 +39,10 @@ class Header extends React.Component {
           return (
               <header>
                 <div>
-                  <NavLink exact={true} className="nav" activeStyle={{ color: 'aquamarine' }} to="/">Home</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
+                  {/* <NavLink exact={true} className="nav" activeStyle={{ color: 'aquamarine' }} to="/">Home</NavLink> &nbsp;&nbsp;&nbsp;&nbsp; */}
                   <NavLink className="nav" activeStyle={{ color: 'aquamarine' }} to="/home">Search</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
                   <NavLink className="nav" activeStyle={{ color: 'aquamarine' }} onClick={this.props.selfProfileClick} to="/profile">Profile</NavLink> &nbsp;&nbsp;
-                  <NavLink className="nav" activeStyle={{ color: 'aquamarine' }} to="/signup">Log In/Sign Up</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
+                  <NavLink exact={true} className="nav" activeStyle={{ color: 'aquamarine' }} to="/">Log In/Sign Up</NavLink> &nbsp;&nbsp;&nbsp;&nbsp;
                 </div>
             </header>
           )
@@ -100,18 +100,17 @@ class App extends React.Component {
         <div>
           <Header selfProfileClick={this.selfProfileClick} handleLogout={this.handleLogout} />
             <Route exact path="/" render={() => (
-                <WelcomePage/>
+                <SignupPage/>
               )}/>
 
             <Route path="/create-profile" render={() => (
                 <CreateProfilePage />
               )}/>
 
-            <Route path="/signup" component={SignupPage} />
 
             <Route path="/home" render={() => (
                 !this.state.user ? (
-                  <Redirect to="/signup"/>
+                  <Redirect to="/"/>
                 ) : (
                   <HomePage handleProfileClick={this.handleProfileClick} />
                 )
@@ -119,7 +118,7 @@ class App extends React.Component {
 
             <Route path="/profile" render={() => (
                 !this.state.user ? (
-                  <Redirect to="/signup"/>
+                  <Redirect to="/"/>
                 ) : (
                   <ProfilePage userID={this.state.profileID} />
                 )

@@ -125,61 +125,65 @@ class FilterForm extends React.Component {
     render() {
         return (
             <div className="signupform">
+              <div class="select">
                 <h1>Let's get started</h1><br/>
                 <form>
-                    <p>
                     <label>
-                        <br/>
-                        City: &nbsp;
-                        <select name="city" value={this.state.city} onChange={this.handleInputChange}>
+                        <div className="form-group">City &nbsp; &nbsp;
+                        <select name="city" value={this.state.city} onChange={this.handleInputChange} id="signupform" className="dropdown">
                             <option value="0">Select</option>
-                            <option value="1">Berkeley</option>
+                            <option value="1" selected="selected">Berkeley</option>
                             <option value="2">San Francisco</option>
                         </select>
+                        </div>
                     </label>
-                    </p>
+
 
                     <p>
                     <label>
-                        Gender: &nbsp;
-                        <select name="gender" value={this.state.gender} onChange={this.handleInputChange}>
+                        <div className="form-group">Gender&nbsp;&nbsp;
+                        <select name="gender" value={this.state.gender} onChange={this.handleInputChange} className="dropdown">
                             <option value="0">Select</option>
                             <option value="1">Male</option>
                             <option value="2">Female</option>
                             <option value="3">Other</option>
                         </select>
+                        </div>
                     </label>
                     </p>
 
                     <p>
                     <label>
-                        Min Age: &nbsp;
-                        <input name="minAge" type="text" name="minAge" value={this.state.minAge} onChange={this.handleInputChange} />
+                        <div className="form-group">Min Age</div>
+                        <input name="minAge" type="text" name="minAge" value={this.state.minAge} onChange={this.handleInputChange} class="ageinput"/>
                     </label>
                     </p>
 
                     <p>
                     <label>
-                        Max Age: &nbsp;
-                        <input name="maxAge" type="text" name="maxAge" value={this.state.maxAge} onChange={this.handleInputChange} />
+                        <div className="form-group">Max Age
+                        <input name="maxAge" type="text" name="maxAge" value={this.state.maxAge} onChange={this.handleInputChange} class="ageinput"/>
+                        </div>
                     </label>
                     </p>
 
                     <p>
                     <label>
-                        Interest: &nbsp;
-                        <select name="interest" value={this.state.interest} onChange={this.handleInputChange}>
+                        <div className="form-group">Interest&nbsp;&nbsp;
+                        <select name="interest" value={this.state.interest} onChange={this.handleInputChange} className="dropdown">
                             <option value="0">Select</option>
                             <option value="1">Guitar</option>
                             <option value="2">Bollywood Movies</option>
                         </select>
+                        </div>
                     </label>
                     </p>
 
-                    <input type="button" value="Submit" onClick={this.handleSubmit} />
+                    <input type="button" value="Submit" onClick={this.handleSubmit} className="btn-btn-primary"/>
                 </form>
 
                 {this.state.isSubmitted && <Profiles users={this.state.users} handleProfileClick={this.props.handleProfileClick} />}
+              </div>
             </div>
         )
     }

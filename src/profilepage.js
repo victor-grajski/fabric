@@ -9,24 +9,24 @@ class ProfilePage extends React.Component {
         this.state = {
             firstName:"Vidya",
             lastName:"R",
-            city: "San Francisco",
+            age: "25",
             gender: "Female",
+            location: "San Francisco",
             interest: "Karaoke",
         }
     }
   render() {
     return (
-        <table>
-        <tbody>
-        <tr>
-          <td>{this.state.firstName} {this.state.lastName}</td>
-          <td>{this.state.age}</td>
-          <td>{this.state.gender}</td>
-          <td>{this.state.location}</td>
-          <td>{this.state.interests}</td>
-      </tr>
-      </tbody>
-      </table>
+      <div className = "profilepage">
+        <h1>My Profile</h1>
+        <img src="https://media.licdn.com/dms/image/C4E03AQG9TGw_FNXciA/profile-displayphoto-shrink_800_800/0?e=1549497600&v=beta&t=J0HaIS4Fbp-yiErVnd_3am9KAjrqjgXLeG-2QgzgcI0" class="Profile-image" alt="Profile image"/>
+        <br/>
+        <strong>Name:</strong> {this.state.firstName} {this.state.lastName} <br/>
+        <strong>Age:</strong> {this.state.age} <br/>
+        <strong>Gender:</strong> {this.state.gender} <br/>
+        <strong>Location:</strong> {this.state.location} <br/>
+        <strong>Interest:</strong> {this.state.interest}
+    </div>
     );
   }
   componentDidMount() {
