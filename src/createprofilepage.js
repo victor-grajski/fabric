@@ -86,7 +86,7 @@ class CreateProfilePage extends React.Component {
     console.log('render')
     console.log('current user=',auth.currentUser.uid)
     return (
-      <div>
+      <div id="signupform">
         <label>First Name</label>
         <input
           className="form-input"
