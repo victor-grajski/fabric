@@ -2,7 +2,7 @@ import firebase from 'firebase';
 
 // Initialize Firebase
 var config = {
-    apiKey: "AIzaSyCE_lxJvzm81YnAwWv0R3-5ShRU9nHOPYM",
+    apiKey: "YOUR API KEY HERE",
     authDomain: "fabric-754fe.firebaseapp.com",
     databaseURL: "https://fabric-754fe.firebaseio.com",
     projectId: "fabric-754fe",
